@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Mugicook API')
-    .setDescription('All API of Mugicook app')
+    .setTitle('MugiRecipe API')
+    .setDescription('API of MugiRecipe app')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
