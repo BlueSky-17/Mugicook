@@ -19,7 +19,7 @@ export class RecipeService {
 
   async create(createRecipeDto: CreateRecipeDto): Promise<Recipe> {
     return await new this.model({
-      ...createRecipeDto
+        ...createRecipeDto
     }).save();
   }
 
