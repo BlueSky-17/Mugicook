@@ -30,4 +30,9 @@ export class UsersService {
     async delete(id: string): Promise<any> {
         return await this.model.findByIdAndDelete(id).exec();
     }
+
+    async findUserByEmail(email: string) {
+        var temp = await this.model.find({email: email}).exec();
+        return temp[0]._id;
+    }
 }

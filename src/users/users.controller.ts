@@ -39,4 +39,13 @@ export class UsersController {
     async delete(@Param('id') id: string) {
       return await this.service.delete(id);
     }
+
+    @ApiTags('Users')
+    @Post('login') 
+    @UsePipes(new ValidationPipe({ transform: true}))
+    async signIn(@Body() createUserDto: CreateUserDto) {
+      var email = createUserDto.email;
+      return await this.service.findUserByEmail(email);
+    }
+
 }
