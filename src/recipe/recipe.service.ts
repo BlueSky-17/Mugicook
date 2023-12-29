@@ -30,4 +30,13 @@ export class RecipeService {
   async delete(id: string): Promise<any> {
     return await this.model.findByIdAndDelete(id).exec();
   }
+
+  async findByCategorie(categorie: string): Promise<Recipe[]> {
+    return await this.model.find({categorie: categorie}).exec();
+  }
+
+  async findByName(query: string): Promise<Recipe[]> {
+    var recipes = await this.model.find({name: new RegExp(query, 'i')}).exec();
+    return recipes;
+  }
 }

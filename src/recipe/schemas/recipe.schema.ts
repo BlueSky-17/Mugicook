@@ -67,6 +67,9 @@ export class Recipe {
     
     @Prop()
     rates: Rate[];
+
+    @Prop()
+    categorie: string;
 }
 
 export const RecipeSchema = SchemaFactory.createForClass(Recipe);

@@ -17,4 +17,5 @@ export class CreateRecipeDto {
     procedure: string[] = [];
     reviews: Review[] = [];
     rates: Rate[] = [];
+    categorie: string = "";
 }

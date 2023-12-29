@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, UsePipes, ValidationPipe, Query } from '@nestjs/common';
 import { RecipeService } from './recipe.service';
 import { CreateRecipeDto } from './dto/create-recipe.dto';
 import { UpdateRecipeDto } from './dto/update-recipe.dto';
@@ -8,6 +8,12 @@ import { ApiTags } from '@nestjs/swagger';
 @UsePipes(new ValidationPipe({ transform: true}))
 export class RecipeController {
   constructor(private readonly service: RecipeService) {}
+
+  @ApiTags('Recipes')
+  @Get('search')
+  async findByName(@Query('name') name: string) {
+    return await this.service.findByName(name);
+  }
 
   @ApiTags('Recipes')
   @Get()
@@ -38,5 +44,11 @@ export class RecipeController {
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return await this.service.delete(id);
+  }
+
+  @ApiTags('Recipes')
+  @Post('categorie')
+  async findByCategorie(@Query('categorie') categorie: string) {
+    return await this.service.findByCategorie(categorie);
   }
 }
