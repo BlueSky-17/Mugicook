@@ -39,4 +39,17 @@ export class RecipeService {
     var recipes = await this.model.find({name: new RegExp(query, 'i')}).exec();
     return recipes;
   }
+
+  async findByIngredient(query: string): Promise<Recipe[]> {
+    // var recipes = await this.model.find({name: new RegExp(query, 'i')}).exec();
+    let recipes: Recipe[] = await this.model.find().select('-__v').exec();
+    let result: Recipe[] = [];
+
+    for(let recipe of recipes) {
+      if(recipe.procedure.find(step => step.includes(query))) {
+        result.push(recipe);
+      }
+    }
+    return result;
+  }
 }

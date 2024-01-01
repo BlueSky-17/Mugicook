@@ -16,6 +16,18 @@ export class RecipeController {
   }
 
   @ApiTags('Recipes')
+  @Get('detect')
+  async findByIngredient(@Query('ingredient') ingredient: string) {
+    return await this.service.findByIngredient(ingredient);
+  }
+
+  @ApiTags('Recipes')
+  @Post('categorie')
+  async findByCategorie(@Query('categorie') categorie: string) {
+    return await this.service.findByCategorie(categorie);
+  }
+
+  @ApiTags('Recipes')
   @Get()
   async index() {
     return await this.service.findAll();
@@ -46,9 +58,5 @@ export class RecipeController {
     return await this.service.delete(id);
   }
 
-  @ApiTags('Recipes')
-  @Post('categorie')
-  async findByCategorie(@Query('categorie') categorie: string) {
-    return await this.service.findByCategorie(categorie);
-  }
+  
 }
